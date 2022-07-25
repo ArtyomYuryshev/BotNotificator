@@ -14,13 +14,13 @@ def get_user_text(message):
     ReminderMessage = "/start \n/help \n/reminder \n/poll"
     bot.send_message(message.chat.id, ReminderMessage, parse_mode='html')
 
-# other action
+# reminder func
 @bot.message_handler(commands=["reminder"])
 def get_user_text(message):
     ReminderMessage = "Окай, я буду напомню вам о необходимости зарегистрироваться каждый понедельник в 11:58."
     bot.send_message(message.chat.id, ReminderMessage, parse_mode="html")
 
-# other action
+# poll func
 @bot.message_handler(commands=["poll"])
 def get_user_text(message):
     ReminderMessage = "Окай, я буду создавать опрос каждую субботу в 11:58."
