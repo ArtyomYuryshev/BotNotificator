@@ -6,13 +6,18 @@ from datetime import datetime
 # bot token
 bot = telebot.TeleBot(config.TOKEN)
 
-# help command
+"""
+It sends a list of available commands
+"""
 @bot.message_handler(commands=["help"])
 def get_user_text(message):
     ReminderMessage = "/help \n/reminder \n/poll"
     bot.send_message(message.chat.id, ReminderMessage, parse_mode='html')
 
-# reminder command
+"""
+It sends reply to the user, then it checks if the current day is Monday and the current time is
+11:59:00. If it is, it sends a message
+"""
 @bot.message_handler(commands=["reminder"])
 def get_user_text(message):
     ReminderHint = "Окай, я буду напомню вам o необходимости зарегистрироваться каждый понедельник в 11:58."
@@ -23,11 +28,15 @@ def get_user_text(message):
         CurrentTime = datetime.now().strftime("%H:%M:%S")
         TimeStamp1 = str(CurrentDay) + "-" + CurrentTime
         time.sleep(1)
-        if TimeStamp1 == "2-21:41:00":
+        if TimeStamp1 == "1-11:59:00":
             print(TimeStamp1)
             bot.send_message(message.chat.id, Reminder)
 
-# poll command
+
+"""
+It sends reply to the user, then it checks if the current day is Saturday and the current time is
+11:59:00. If it is, it sends a poll
+"""
 @bot.message_handler(commands=["poll"])
 def get_user_text(message):
     ReminderMessage = "Окай, я буду создавать опрос каждую субботу в 11:58."
@@ -37,7 +46,7 @@ def get_user_text(message):
         CurrentTime = datetime.now().strftime("%H:%M:%S")
         TimeStamp2 = str(CurrentDay) + "-" + CurrentTime
         time.sleep(1)
-        if TimeStamp2 == "2-21:41:00":
+        if TimeStamp2 == "6-11:59:00":
             CurrentWednsday = datetime.now().strftime("%d:%m")
             PollHeader = "mzgb - "+ CurrentWednsday
             print(PollHeader)
